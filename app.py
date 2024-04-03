@@ -76,12 +76,13 @@ def video():
 @app.route("/video_reply",methods=["GET","POST"])
 def video_reply():
     q = request.form.get("q")
-    r = replicate.run("anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
-    input={
-        "prompt": q,
-        "num_frames":10
-    }
-)
+    r = replicate.run(
+        "anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
+        input={
+            "prompt": q,
+            "num_frames":10
+        }
+    )
     return(render_template("video_reply.html",r=r[0]))
            
 @app.route("/end",methods=["GET","POST"])
